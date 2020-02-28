@@ -4,14 +4,25 @@ import java.util.List;
 
 public class CreatePS {	
 	
+	
+	static String prefixDto = "dto";
+	
 	public static void main(String[] args) {
+	
+		
 		String sentence = "" + 
-				"	id                   bigint NOT NULL ,\r\n" + 
-				"	periodo_cierre       date  NOT NULL ,\r\n" + 
-				"	fecha_ejecucion_cierre date   ,\r\n" + 
-				"	en_ejecucion         bool   ,\r\n" + 
-				"	fecha_ejecucion_deterioro date   ,\r\n" + 
-				"	fecha_ejecucion_calculo_fianza date"; 		
+				"id                   bigint  NOT NULL ,\r\n" + 
+				"numero_cuenta        varchar NOT NULL ,\r\n" + 
+				"tipo_cuenta          varchar NOT NULL ,\r\n" + 
+				"banco                varchar NOT NULL ,\r\n" + 
+				"nombre_titular       varchar NOT NULL ,\r\n" + 
+				"apellido_titular     varchar NOT NULL ,\r\n" + 
+				"departamento         varchar NOT NULL  ,\r\n" + 
+				"ciudad               varchar NOT NULL  ,\r\n" + 
+				"id_preinscripcion_cuenta integer  NOT NULL ,\r\n" + 
+				"fecha                timestamp  NOT NULL ,\r\n" + 
+				""; 		
+	
 		System.out.println(sentence);
 		
 		CodeStatement codeStatement = new CodeStatement(sentence);
@@ -33,21 +44,20 @@ public class CreatePS {
 			System.out.println(element);			
 		}
 		
-
-		System.out.println("=== Getter & Setters PrepareStatement ===");
+		System.out.println("=== Set PS from  ===");
 		List <String> lstPSNoPrefix = codeStatement.getLstPS(null);
 		for (String element : lstPSNoPrefix) {
 			System.out.println(element);			
 		}
 		
-		
-		
-		List <String> lstPS = codeStatement.getLstPS("dto");
+		System.out.println("=== Set PS from DTO ===");
+		List <String> lstPS = codeStatement.getLstPS(prefixDto);
 		for (String element : lstPS) {
 			System.out.println(element);			
 		}
-
-		List <String> lstRSNoPrefix = codeStatement.getLstRS("dto");
+		
+		System.out.println("=== Set DTO from PS ===");
+		List <String> lstRSNoPrefix = codeStatement.getLstRS(prefixDto);
 		for (String element : lstRSNoPrefix) {
 			System.out.println(element);			
 		}
